@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Plants List{% endblock %}
+
+{% block content %}
+<h2>Plants List</h2>
+<div class="plants">
+    {% for plant in plants %}
+        <div class="plant-card">
+            <a href="{{ url_for('detail', plant_id=plant._id) }}">
+                <img src="{{ plant.photo_url }}" alt="{{ plant.name }}" class="plant-image">
+            </a>
+            <div>
+                <a href="{{ url_for('detail', plant_id=plant._id) }}">{{ plant.name }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

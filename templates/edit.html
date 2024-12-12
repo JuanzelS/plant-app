@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit {{ plant.name }}{% endblock %}
+
+{% block content %}
+<h2>Edit {{ plant.name }}</h2>
+<form method="POST" action="{{ url_for('edit', plant_id=plant._id) }}">
+    <label for="name">Plant Name:</label>
+    <input type="text" id="name" name="name" value="{{ plant.name }}" required>
+
+    <label for="photo_url">Photo URL:</label>
+    <input type="text" id="photo_url" name="photo_url" value="{{ plant.photo_url }}" required>
+
+    <label for="date_planted">Date Planted:</label>
+    <input type="date" id="date_planted" name="date_planted" value="{{ plant.date_planted }}" required>
+
+    <label for="variety">Variety:</label>
+    <input type="text" id="variety" name="variety" value="{{ plant.variety }}" required>
+
+    <button type="submit">Update Plant</button>
+</form>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ plant.name }} Details{% endblock %}
+
+{% block content %}
+<h2>{{ plant.name }}</h2>
+<img src="{{ plant.photo_url }}" alt="{{ plant.name }}">
+<p>Date Planted: {{ plant.date_planted }}</p>
+<p>Variety: {{ plant.variety }}</p>
+
+<h3>Harvests</h3>
+<ul>
+    {% for harvest in plant.harvests %}
+        <li>{{ harvest.date }} - {{ harvest.yield }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Add Harvest</h3>
+<form method="POST" action="{{ url_for('harvest', plant_id=plant._id) }}">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="yield">Yield:</label>
+    <input type="text" id="yield" name="yield" required>
+
+    <button type="submit">Add Harvest</button>
+</form>
+
+<h3>Actions</h3>
+<a href="{{ url_for('edit', plant_id=plant._id) }}">Edit</a>
+<form method="POST" action="{{ url_for('delete', plant_id=plant._id) }}" style="display:inline;">
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}
